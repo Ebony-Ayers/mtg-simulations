@@ -1,10 +1,29 @@
 import random
-#for a deck of 100 cards (commander format)
+import sys
+
+DECK_SIZE = 100
+NUM_CARDS_DESIRED = 1
+TURN_DESIRED = 4
+if len(sys.argv) >= 4: DECK_SIZE =			int(sys.argv[3])
+if len(sys.argv) >= 3: TURN_DESIRED =		int(sys.argv[2])
+if len(sys.argv) >= 2: NUM_CARDS_DESIRED =	int(sys.argv[1])
+#default deck size of of 100 cards (commander format)
+#default searching for 1 card by the end of turn 4
 
 #assume a deck is made of 2 cards A and B where there are n A cards and 100-n B cards
-#draw a random card and return weather that card is A or not where n is the number of A cards
-def draw(n):
-	return random.randint(0, 99) < n
+#draw cards untill the desired turn and return the number of A cards drawn
+def draw(numACards, startingHandSize = 7):
+	numDrawn = 0
+	aCardsRemaining = numACards
+	for i in range(TURN_DESIRED + startingHandSize):
+		didDraw random.randint(0, DECK_SIZE - 1 - i) < aCardsRemaining
+		if didDraw:
+			if aCardsRemaining > 0:
+				aCardsRemaining -= 1
+				numDrawn += 1
+			else:
+				break
+	return numDrawn
 
 #assuming replacment how many A cards will we draw by round r with m mulligans
 def numberByRoundN(n, r, mulligan = 0):
